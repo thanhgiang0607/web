@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sáp dưỡng thể - Myboo</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #8a6f5c;
+      --accent-color: #d18c96;
+      --light-bg: #f9f5f1;
+      --dark-text: #333;
+      --light-text: #fff;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--light-bg);
+      color: var(--dark-text);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    header {
+      background: linear-gradient(90deg, var(--light-bg), #ffffff);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 40px;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .main-content {
+      margin-left: 250px;
+      padding: 40px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .product-card h3 {
+      font-size: 1.2rem;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+
+    .product-card p.description {
+      font-size: 0.95rem;
+      color: #555;
+      min-height: 60px;
+    }
+
+    .product-card .price {
+      font-size: 1.1rem;
+      color: var(--accent-color);
+      margin: 10px 0;
+    }
+
+    .product-card button {
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .product-card button:hover {
+      background-color: #c17686;
+    }
+
+    .added-message {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: green;
+      display: none;
+    }
+
+    .sidebar-categories {
+      width: 250px;
+      background-color: #f4f1f1;
+      border-right: 1px solid #eee;
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 71px;
+      z-index: 10000;
+      padding-top: 20px;
+    }
+
+    .category-item {
+      padding: 15px 20px;
+      transition: background-color 0.3s;
+    }
+
+    .category-item:hover {
+      background-color: var(--accent-color);
+      color: white;
+    }
+
+    .category-item a {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .main-content {
+        margin-left: 0;
+        padding: 20px;
+      }
+
+      .sidebar-categories {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo"><a href="index.html">Myboo</a></div>
+      <nav>
+        <a href="index.html">Trang chủ</a> |
+        <a href="#">Sản phẩm</a> |
+        <a href="#">Giỏ hàng</a> |
+        <a href="login.html">Đăng nhập</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <aside class="sidebar-categories">
+    <div class="category-item"><a href="index.html">← Quay lại danh mục</a></div>
+    <div class="category-item"><a href="suatam.html">Sữa tắm</a></div>
+    <div class="category-item"><a href="daugoi.html">Dầu gội</a></div>
+    <div class="category-item"><a href="sapduongthe.html">Sáp dưỡng thể</a></div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <h2 style="margin-bottom: 30px; color: var(--primary-color);">Bộ sưu tập Sáp dưỡng thể</h2>
+    <div class="product-grid">
+
+      <!-- Product 1 -->
+      <div class="product-card">
+        <img src = "data:image/jpeg;base64,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" alt = "Bơ dưỡng thể cà phê Đắk Lắk 200ml">
+        <h3>Bơ dưỡng thể cà phê Đắk Lắk 200ml</h3>
+        <p class="description">Dầu cà phê Đắk Lắk rất giàu cafein, kết hợp với dầu mù u và bơ cacao, tất cả hòa quyện nên một thể bơ sánh mịn giúp dưỡng ẩm, làm mềm và chống oxi hóa, mang lại làn da cơ thể luôn mượt mà, tươi mới rạng rỡ.</p>
+        <p class="price">245.000đ</p>
+        <button onclick="showMessage(this)">Thêm vào giỏ hàng</button>
+        <p class="added-message">Đã thêm vào giỏ hàng!</p>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card">
+        <img src = "https://yvesrocher.vn/media/catalog/product/cache/a7cc7342a2f92a295dcb391475ae6446/y/1/y120283.png" alt = "Sáp Dưỡng Thể Cho Da Khô & Rất Khô Yves Rocher Dưỡng Ẩm & Làm Dịu Da Repair Whipped Body Butter 250ML">
+        <h3>Sáp Dưỡng Thể Cho Da Khô & Rất Khô Yves Rocher Dưỡng Ẩm & Làm Dịu Da Repair Whipped Body Butter 250ML</h3>
+        <p class="description">Nuôi dưỡng làn da mạnh mẽ và lâu dài. Kết cấu xốp mềm mại, giàu khả năng dưỡng ẩm giúp giảm căng tức da tức thì</p>
+        <p class="price">750.000đ</p>
+        <button onclick="showMessage(this)">Thêm vào giỏ hàng</button>
+        <p class="added-message">Đã thêm vào giỏ hàng!</p>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card">
+        <img src = "https://image.cocoonvietnam.com/uploads/Avatar_Website_Sap_Duong_Am_Sen_Hau_Giang_30ml_00f70209be.jpg" alt = "Sáp dưỡng ẩm đa năng sen Hậu Giang 30ml">
+        <h3>Sáp dưỡng ẩm đa năng sen Hậu Giang 30ml</h3>
+        <p class="description">Với sức mạnh của chiết xuất hoa sen, bơ hạt mỡ, madecassoside, vitamin B5, B12 và phức hợp dầu chưng cất phân tử Passioline và Soline, Sáp Dưỡng Ấm Đa Năng Sen Hậu Giang giúp dưỡng ẩm sâu, làm dịu tình trạng mẫn đỏ do khô da, mang lại làn da mềm mại, mịn màng.  </p>
+        <p class="price">195.000đ</p>
+        <button onclick="showMessage(this)">Thêm vào giỏ hàng</button>
+        <p class="added-message">Đã thêm vào giỏ hàng!</p>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="product-card">
+        <img src = "https://myphamthuanchay.com/images/product/sua-duong-the-khuynh-diep-bac-ha-cocoon-140ml.jpg" alt = "Sữa dưỡng thể khuynh diệp & bạc hà cocoon 140ml">
+        <h3>Sữa dưỡng thể khuynh diệp & bạc hà cocoon 140ml</h3>
+        <p class="description">Sữa dưỡng thể khuynh diệp & bạc hà cocoon thuần chay 140ml Làm mềm da, Cung cấp độ ẩm cho da, Hương thơm nhẹ nhàng, thư giãn </p>
+        <p class="price">209.000đ</p>
+        <button onclick="showMessage(this)">Thêm vào giỏ hàng</button>
+        <p class="added-message">Đã thêm vào giỏ hàng!</p>
+      </div>
+
+      <!-- Product 5 -->
+      <div class="product-card">
+        <img src = "https://product.hstatic.net/200000551679/product/1_947b7197538d454ea77871055d9f6dc5_1024x1024.png" alt = "Embryolisse Sữa dưỡng Lait - Crème Concentré">
+        <h3>Embryolisse Sữa dưỡng Lait - Crème Concentré</h3>
+        <p class="description">Embryolisse Sữa dưỡng Lait - Crème Concentré đến từ Pháp với sự kết hợp từ bộ 3 thành phần cốt lõi thiên nhiên nha đam hữu cơ, bơ hạt mỡ và sáp ong, cùng protein đậu nành giúp làn da được dưỡng ẩm mịn màng, đồng thời làm dịu kích ứng và phục hồi hiệu quả để làn da luôn ẩm mịn và rạng rỡ  </p>
+        <p class="price">245.000đ</p>
+        <button onclick="showMessage(this)">Thêm vào giỏ hàng</button>
+        <p class="added-message">Đã thêm vào giỏ hàng!</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    function showMessage(btn) {
+      const msg = btn.nextElementSibling;
+      msg.style.display = "block";
+      setTimeout(() => {
+        msg.style.display = "none";
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

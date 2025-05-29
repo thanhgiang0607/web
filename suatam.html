@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sữa tắm - Myboo</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #8a6f5c;
+      --accent-color: #d18c96;
+      --light-bg: #f9f5f1;
+      --dark-text: #333;
+      --light-text: #fff;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--light-bg);
+      color: var(--dark-text);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    header {
+      background: linear-gradient(90deg, var(--light-bg), #ffffff);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 40px;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .main-content {
+      margin-left: 250px;
+      padding: 40px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .product-card h3 {
+      font-size: 1.2rem;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+
+    .product-card p.description {
+      font-size: 0.95rem;
+      color: #555;
+      min-height: 60px;
+    }
+
+    .product-card .price {
+      font-size: 1.1rem;
+      color: var(--accent-color);
+      margin: 10px 0;
+    }
+
+    .product-card button {
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .product-card button:hover {
+      background-color: #c17686;
+    }
+
+    .added-message {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: green;
+      display: none;
+    }
+
+    .sidebar-categories {
+      width: 250px;
+      background-color: #f4f1f1;
+      border-right: 1px solid #eee;
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 71px;
+      z-index: 10000;
+      padding-top: 20px;
+    }
+
+    .category-item {
+      padding: 15px 20px;
+      transition: background-color 0.3s;
+    }
+
+    .category-item:hover {
+      background-color: var(--accent-color);
+      color: white;
+    }
+
+    .category-item a {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .main-content {
+        margin-left: 0;
+        padding: 20px;
+      }
+
+      .sidebar-categories {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo"><a href="index.html">Myboo</a></div>
+      <nav>
+        <a href="index.html">Trang chủ</a> |
+        <a href="#">Sản phẩm</a> |
+        <a href="#">Giỏ hàng</a> |
+        <a href="login.html">Đăng nhập</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <aside class="sidebar-categories">
+    <div class="category-item"><a href="index.html">← Quay lại danh mục</a></div>
+    <div class="category-item"><a href="suatam.html">Sữa tắm</a></div>
+    <div class="category-item"><a href="daugoi.html">Dầu gội</a></div>
+    <div class="category-item"><a href="sapduongthe.html">Sáp dưỡng thể</a></div>
+
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <h2 style="margin-bottom: 30px; color: var(--primary-color);">Bộ sưu tập Sữa tắm</h2>
+    <div class="product-grid">
+
+      <!-- Product 1 -->
+      <div class="product-card">
+        <img src = "https://product.hstatic.net/1000041671/product/min__anh_web_2_8aa099f909cf4cf598364a090c228cbc.jpg" alt = "Sữa tắm nước hoa">
+        <h3>Sữa tắm nước hoa</h3>
+        <p class="description">Là dòng sữa tắm nước hoa với cấu trúc 3 tầng, lưu hương lâu</p>
+        <p class="price">160.000đ</p>
+        <button onclick="showMessage(this)">Thêm vào giỏ hàng</button>
+        <p class="added-message">Đã thêm vào giỏ hàng!</p>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card">
+        <img src = "https://production-cdn.pharmacity.io/digital/1080x1080/plain/e-com/images/ecommerce/P07424_1.png" alt = "Sữa Tắm PURITE Rose Hương Hoa Hồng">
+        <h3>Sữa Tắm PURITE Rose Hương Hoa Hồng</h3>
+        <p class="description">Giúp giữ ẩm da, sáng da</p>
+        <p class="price">119.000đ</p>
+        <button onclick="showMessage(this)">Thêm vào giỏ hàng</button>
+        <p class="added-message">Đã thêm vào giỏ hàng!</p>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card">
+        <img src = "https://product.hstatic.net/1000006063/product/7f89513e18ab099bed44db67478036b2_quot_0af17a5a550c4813afaae99da7f85ecd_1024x1024.jpg" alt = "Sữa Tắm Dưỡng Da St.Ives Body Wash">
+        <h3>Sữa Tắm Dưỡng Da St.Ives Body Wash</h3>
+        <p class="description">Lưu hương lâu, trắng da </p>
+        <p class="price">139.000đ - 150.000đ</p>
+        <button onclick="showMessage(this)">Thêm vào giỏ hàng</button>
+        <p class="added-message">Đã thêm vào giỏ hàng!</p>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="product-card">
+        <img src = "https://www.guardian.com.vn/media/catalog/product/cache/30b2b44eba57cd45fd3ef9287600968e/a/5/a57f2fd803994729abd7407b99b0bab747350a893a3edecd3e1c7e4088942eb8.jpeg" alt = "Sữa Tắm Hương Hoa Hồng Double Rich Eva'S Secret Body Shower 550G">
+        <h3>Sữa Tắm Hương Hoa Hồng Double Rich Eva'S Secret Body Shower 550G </h3>
+        <p class="description">Gết hợp Aloe Vera, tinh dầu Jojoba giàu dưỡng chất từ thiên nhiên giúp dưỡng ẩm da tuyệt vời </p>
+        <p class="price">88.000đ</p>
+        <button onclick="showMessage(this)">Thêm vào giỏ hàng</button>
+        <p class="added-message">Đã thêm vào giỏ hàng!</p>
+      </div>
+
+      <!-- Product 5 -->
+      <div class="product-card">
+        <img src = "https://xinhkorea.com/wp-content/uploads/2021/05/z2511241657865_cb34072821e6952503e2c9c0b7b6ea82.jpg" alt = "Sữa Tắm Onthebody Hàn Quốc">
+        <h3>Sữa Tắm Onthebody Hàn Quốc</h3>
+        <p class="description">Sữa tắm On The Body là  sản phẩm sữa tắm thuộc tập đoàn LG nổi tiếng tại Hàn Quốc, được nghiên cứu và sản xuất với công nghệ tiên tiến, hiện đại, dây chuyền khép kín sử dụng các thành phần chiết xuất từ thiên nhiên, lành tính, đảm bảo an toàn, không gây kích ứng da, phù hợp với mọi làn da, đặc biệt là da nhạy cảm.</p>
+        <p class="price">230.000đ</p>
+        <button onclick="showMessage(this)">Thêm vào giỏ hàng</button>
+        <p class="added-message">Đã thêm vào giỏ hàng!</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    function showMessage(btn) {
+      const msg = btn.nextElementSibling;
+      msg.style.display = "block";
+      setTimeout(() => {
+        msg.style.display = "none";
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

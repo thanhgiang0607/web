@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myboo - Sản Phẩm Mỹ Phẩm Thiên Nhiên</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #8a6f5c;
+            --secondary-color: #2b2b2b;
+            --accent-color: #d18c96;
+            --light-bg: #f9f5f1;
+            --dark-text: #333333;
+            --light-text: #ffffff;
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --gradient-1: linear-gradient(135deg, #f9b8ba 0%, #f4d6eb 50%, #baa0b4 100%);
+            --gradient-2: linear-gradient(135deg, #667eea 0%, #673f90 100%);
+            --gradient-3: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--light-bg) 0%, #ffffff 100%);
+            color: var(--dark-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            opacity: 0.03;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            color: var(--accent-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: var(--accent-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .search-cart {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            padding: 0.7rem 1rem 0.7rem 2.5rem;
+            border: 2px solid transparent;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            outline: none;
+            transition: all 0.3s ease;
+            width: 250px;
+        }
+
+        .search-box input:focus {
+            border-color: var(--accent-color);
+            background: rgba(255, 255, 255, 0.9);
+            transform: scale(1.02);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-color);
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cart-icon:hover {
+            color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 70vh;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: rgb(103, 86, 15);
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: slideInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            animation: slideInUp 1s ease-out 0.2s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            animation: slideInUp 1s ease-out 0.4s both;
+        }
+
+        .cta-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Product Categories */
+        .categories {
+            padding: 5rem 0;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background: var(--accent-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .category-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .category-card:hover::before {
+            left: 100%;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent-color);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .category-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-text);
+        }
+
+        .category-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        .category-filter {
+            text-align: center;
+            margin: 20px 0 40px;
+        }
+        .category-filter button {
+        background-color: #eee;
+        border: none;
+        padding: 10px 18px;
+        margin: 0 8px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background-color 0.3s;
+        }
+        .category-filter button:hover {
+        background-color: #d18c96;
+        color: #fff;
+        }
+
+
+        /* Product Grid */
+        .products {
+            padding: 5rem 0;
+        }
+
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .filter-tab {
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid transparent;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .filter-tab.active {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        .filter-tab:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 30px;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 220px;
+            background: #f7f7f7;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: none;
+        }
+        .product-card:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  }
+
+
+        .product-overlay {
+            display: none !important;
+        }
+        .product-info .add-to-cart {
+  margin-top: 10px;
+  background-color: #d18c96;
+  color: white;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+
+        .add-to-cart:hover {
+            background: #c17686;
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark-text);
+        }
+
+        .product-category {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stars {
+            color: #ffc107;
+        }
+
+        /* Special Features */
+        .features {
+            padding: 5rem 0;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            transition: all 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+            color: white;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            padding: 4rem 0;
+            background: var(--gradient-2);
+            text-align: center;
+        }
+
+        .newsletter h2 {
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 25px;
+            outline: none;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            padding: 1rem 2rem;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background: #c17686;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--secondary-color);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ccc;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .product-card:hover {
+                transform: translateY(-10px);
+            }
+
+            .search-box input {
+                width: 200px;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Pulse Animation for Cards */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .product-card.featured {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="#" class="logo">Myboo</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="sanpham.html">Sản phẩm</a></li>
+                    <li><a href="giohang.html">Giỏ hàng</a></li>
+                    <li><a href="#">Liên hệ</a></li>
+                </ul>
+            </nav>
+            <div class="search-cart">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Tìm kiếm sản phẩm..." id="searchInput">
+                </div>
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Vẻ Đẹp Thiên Nhiên</h1>
+            <p>Khám phá bộ sưu tập mỹ phẩm thiên nhiên cao cấp, an toàn cho làn da của bạn</p>
+            <a href="#products" class="cta-button">Khám phá ngay</a>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories">
+        <div class="container">
+            <div class="section-title">
+                <h2>Danh Mục Sản Phẩm</h2>
+            </div>
+            <div class="category-grid">
+                <div class="category-card" data-category="skincare" onclick = "window.location.href = 'suaruamat.html'">
+                    <div class="category-icon">🧴</div>
+                    <h3>Chăm Sóc Da</h3>
+                    <p>Dưỡng da với các thành phần thiên nhiên, giúp da khỏe mạnh và rạng rỡ</p>
+                </div>
+                <div class="category-card" data-category="makeup" onclick = "window.location.href = 'sonmoi.html'">
+                    <div class="category-icon">💄</div>
+                    <h3>Trang Điểm</h3>
+                    <p>Tôn lên vẻ đẹp tự nhiên với các sản phẩm makeup chất lượng cao</p>
+                </div>
+                <div class="category-card" data-category="fragrance" onclick = "window.location.href = 'nuochoanu.html'">
+                    <div class="category-icon">🌸</div>
+                    <h3>Nước Hoa</h3>
+                    <p>Hương thơm quyến rũ từ tinh dầu thiên nhiên, lưu hương lâu dài</p>
+                </div>
+                <div class="category-card" data-category="body" onclick = "window.location.href = 'suatam.html'">
+                    <div class="category-icon">🛁</div>
+                    <h3>Chăm Sóc Cơ Thể</h3>
+                    <p>Nuôi dưỡng làn da toàn thân với các sản phẩm dịu nhẹ</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products -->
+    <section id="products" class="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Sản Phẩm Nổi Bật</h2>
+                <br>
+                <div class = "category-filter">
+            <button onclick="filterProducts('all')">Tất cả</button>
+            <button onclick="filterProducts('skincare')">Chăm sóc da</button>
+            <button onclick="filterProducts('makeup')">Trang điểm</button>
+            <button onclick="filterProducts('fragrance')">Nước hoa</button>
+            <button onclick="filterProducts('body')">Chăm sóc cơ thể</button>
+        </div>
+            </div>
+           
+            <div class="product-grid" id="productGrid">
+                <div class=" product-card featured" data-category="skincare">
+                    <div class="product-image">
+                        <img src="data:image/jpeg;base64,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" alt="Sữa rửa mặt hoa cúc">
+                        <div class = "product-overlay">
+                            <button class="add-to-cart"> Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                    <div class = "product-info">
+                        <div class = "product-name"> Sữa rửa mặt hoa cúc</div>
+                        <div class = "product-category">Chăm sóc da></div>
+                        <div class = "product-price">198.000đ</div>
+                        <div class="product-rating">
+                            <span class="stars">★★★★★</span> (234 đánh giá)
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class=" product-card featured" data-category="makeup">
+                    <div class = "product-image">
+                        <img src="https://file.hstatic.net/1000006063/file/son_kem_bbia_last_velvet_lip_tint_version_8_mau_hong_dat__36_597308a59e464d929c446f815b8b496b_grande.jpg" alt="Son Hồng Đất">
+                        <div class = "product-overlay">
+                            <button class = "add-to-cart"> Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                        <div class = "product-info">
+                            <div class = "product-name"> Son hồng đất</div>
+                            <div class = "product-category">Trang điểm</div>
+                            <div class = "product-price">289.000đ</div>
+                            <div class = "product-rating">
+                                <span class="stars">★★★★</span> (152 đánh giá)
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <br>
+                <div class=" product-card featured" data-category="fragrance">
+                    <div class = "product-image">
+                        <img src="data:image/jpeg;base64,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" alt = "Xịt thơm Bath&Body works body mist into the night 236ml">
+                        <div class = "product-overlay">
+                            <button class = "add-to-cart"> Thêm vào giỏ</button>
+                        </div>
+                        </div>
+                        <div class = "product-info">
+                            <div class = "product-name"> Xịt thơm Bath&Body works body mist into the night 236ml</div>
+                            <div class = "product-category">Nước hoa </div>
+                            <div class = "product-price">225.000đ</div>
+                            <div class="product-rating">
+                                <span class="stars">★★★★</span> (305 đánh giá)
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                </div>
+                </div>
+                <br>
+                <div class=" product-card featured" data-category="body">
+                    <div class = "product-image">
+                        <img src="https://xinhkorea.com/wp-content/uploads/2021/05/z2511241657865_cb34072821e6952503e2c9c0b7b6ea82.jpg" alt = "Sữa Tắm Onthebody Hàn Quốc">
+                        <div class = "product-overlay">
+                            <button class = "add-to-cart"> Thêm vào giỏ</button>
+                        </div>
+                        </div>
+                        <div class = "product-info">
+                            <div class = "product-name"> Sữa Tắm Onthebody Hàn Quốc</div>
+                            <div class = "product-category">Chăm sóc cơ thể </div>
+                            <div class = "product-price">230.000đ</div>
+                            <div class="product-rating">
+                                <span class="stars">★★★★</span> (285 đánh giá)
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                </div>
+                </div>
+                <!-- Products will be loaded here -->
+            </div>
+        </div>
+        
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Cam Kết Của Chúng Tôi</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🌿</div>
+                    <h3>100% Thiên Nhiên</h3>
+                    <p>Sản phẩm từ các thành phần thiên nhiên an toàn, không chất độc hại</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚚</div>
+                    <h3>Giao Hàng Miễn Phí</h3>
+                    <p>Miễn phí vận chuyển cho đơn hàng trên 500.000đ trên toàn quốc</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Đổi Trả Dễ Dàng</h3>
+                    <p>Chính sách đổi trả trong 30 ngày, hoàn tiền 100% nếu không hài lòng</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💝</div>
+                    <h3>Tư Vấn Miễn Phí</h3>
+                    <p>Đội ngũ chuyên gia tư vấn miễn phí về chăm sóc da và làm đẹp</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Đăng Ký Nhận Tin</h2>
+            <p>Nhận thông tin về sản phẩm mới và ưu đãi đặc biệt</p>
+            <div class="newsletter-form">
+                <input type="email" placeholder="Nhập email của bạn..." id="emailInput">
+                <button onclick="subscribeNewsletter()">Đăng ký</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Về Myboo</h3>
+                    <p>Thương hiệu mỹ phẩm thiên nhiên hàng đầu Việt Nam, cam kết mang đến sản phẩm chất lượng cao và an toàn.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Hỗ Trợ</h3>
+                    <ul>
+                        <li><a href="#">Hướng dẫn đặt hàng</a></li>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                        <li><a href="#">Câu hỏi thường gặp</a></li>
+                        <li><a href="#">Liên hệ</a></li>
+                    </ul>
+<script>
+  function filterProducts(category) {
+    const allCards = document.querySelectorAll('.product-card');
+    allCards.forEach(card => {
+      if (category === 'all' || card.dataset.category === category) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+</script>

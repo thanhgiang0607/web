@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dầu gội - Myboo</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #8a6f5c;
+      --accent-color: #d18c96;
+      --light-bg: #f9f5f1;
+      --dark-text: #333;
+      --light-text: #fff;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--light-bg);
+      color: var(--dark-text);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    header {
+      background: linear-gradient(90deg, var(--light-bg), #ffffff);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 40px;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .main-content {
+      margin-left: 250px;
+      padding: 40px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .product-card h3 {
+      font-size: 1.2rem;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+
+    .product-card p.description {
+      font-size: 0.95rem;
+      color: #555;
+      min-height: 60px;
+    }
+
+    .product-card .price {
+      font-size: 1.1rem;
+      color: var(--accent-color);
+      margin: 10px 0;
+    }
+
+    .product-card button {
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .product-card button:hover {
+      background-color: #c17686;
+    }
+
+    .added-message {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: green;
+      display: none;
+    }
+
+    .sidebar-categories {
+      width: 250px;
+      background-color: #f4f1f1;
+      border-right: 1px solid #eee;
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 71px;
+      z-index: 10000;
+      padding-top: 20px;
+    }
+
+    .category-item {
+      padding: 15px 20px;
+      transition: background-color 0.3s;
+    }
+
+    .category-item:hover {
+      background-color: var(--accent-color);
+      color: white;
+    }
+
+    .category-item a {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .main-content {
+        margin-left: 0;
+        padding: 20px;
+      }
+
+      .sidebar-categories {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo"><a href="index.html">Myboo</a></div>
+      <nav>
+        <a href="index.html">Trang chủ</a> |
+        <a href="#">Sản phẩm</a> |
+        <a href="#">Giỏ hàng</a> |
+        <a href="login.html">Đăng nhập</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <aside class="sidebar-categories">
+    <div class="category-item"><a href="index.html">← Quay lại danh mục</a></div>
+    <div class="category-item"><a href="suatam.html">Sữa tắm</a></div>
+    <div class="category-item"><a href="daugoi.html">Dầu gội</a></div>
+    <div class="category-item"><a href="sapduongthe.html">Sáp dưỡng thể</a></div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <h2 style="margin-bottom: 30px; color: var(--primary-color);">Bộ sưu tập Dầu gội</h2>
+    <div class="product-grid">
+
+      <!-- Product 1 -->
+      <div class="product-card">
+        <img src = "https://www.palmolive.com.vn/content/dam/cp-sites/personal-care/palmolive-eu/vi_vn/products-detail/palmolive-natural-intensive-moisture-shampoo-600ml.jpg" alt = "Dầu gội và xả Palmolive">
+        <h3>Dầu gội và xả Palmolive</h3>
+        <p class="description">Bổ sung độ ẩm cần thiết giúp cho tóc mềm mượt, thơm mát suốt ngày dài</p>
+        <p class="price">160.000đ</p>
+        <button onclick="showMessage(this)">Thêm vào giỏ hàng</button>
+        <p class="added-message">Đã thêm vào giỏ hàng!</p>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card">
+        <img src = "https://bizweb.dktcdn.net/100/478/273/products/tom-mart-dau-goi-thao-duoc-nguyen-xuan-xanh-la-03.jpg?v=1738725715750" alt = "Dầu gội dược liệu Nguyên Xuân xanh lá (chai 250Ml)">
+        <h3>Dầu gội dược liệu Nguyên Xuân xanh lá (chai 250Ml)</h3>
+        <p class="description">Là sản phẩm dầu gội phù hợp cho tóc khô và hư tổn.</p>
+        <p class="price">90.000đ</p>
+        <button onclick="showMessage(this)">Thêm vào giỏ hàng</button>
+        <p class="added-message">Đã thêm vào giỏ hàng!</p>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card">
+        <img src = "https://product.hstatic.net/1000304337/product/dsdsefergtrh_7a53b8d5cafa40208750e66955b12443_1024x1024.png" alt = "Combo Dầu Gội Xả Tresemme Keratin Smooth 400ml">
+        <h3>Combo Dầu Gội Xả Tresemme Keratin Smooth 400ml</h3>
+        <p class="description">Với nồng độ sulfate thấp, sản phẩm dầu gội + dầu xả TRESemmé Keratin Smooth  dành riêng cho tóc xơ rối không thể vào nếp.  </p>
+        <p class="price">189.000đ</p>
+        <button onclick="showMessage(this)">Thêm vào giỏ hàng</button>
+        <p class="added-message">Đã thêm vào giỏ hàng!</p>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="product-card">
+        <img src = "https://image.cocoonvietnam.com/uploads/z3955699562722_f08debe9657c26ce2a9a6333b3295060_1476261cc8.jpg" alt = "Dầu gội bưởi không sulfate 310ml">
+        <h3>Dầu gội bưởi không sulfate 310ml</h3>
+        <p class="description">Từ tinh dầu vỏ bưởi Việt Nam truyền thống kết hợp với vitamin B5, hoạt chất dưỡng ẩm Xylishine™ cùng công thức dịu nhẹ không chứa sulfate, dầu gội bưởi giúp làm sạch tóc và giảm gãy rụng, mang lại mái tóc đen dày, chắc khoẻ và mượt mà </p>
+        <p class="price">239.000đ</p>
+        <button onclick="showMessage(this)">Thêm vào giỏ hàng</button>
+        <p class="added-message">Đã thêm vào giỏ hàng!</p>
+      </div>
+
+      <!-- Product 5 -->
+      <div class="product-card">
+        <img src = "data:image/jpeg;base64,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" alt = "Dầu gội Oliv chắc khỏe ngăn gãy rụng chai 650ml">
+        <h3>Dầu gội Oliv chắc khỏe ngăn gãy rụng chai 650ml</h3>
+        <p class="description">Dành cho tóc thường và tóc dễ gãy rụng. Làm sạch, dưỡng tóc óng mượt, chắc khỏe</p>
+        <p class="price">150.000đ</p>
+        <button onclick="showMessage(this)">Thêm vào giỏ hàng</button>
+        <p class="added-message">Đã thêm vào giỏ hàng!</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    function showMessage(btn) {
+      const msg = btn.nextElementSibling;
+      msg.style.display = "block";
+      setTimeout(() => {
+        msg.style.display = "none";
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
