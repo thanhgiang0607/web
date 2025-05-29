@@ -784,6 +784,22 @@
         .product.hidden {
             display: none;
         }
+        .suggestions {
+            position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: none;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+        }
     </style>
 </head>
 <body>
@@ -808,11 +824,12 @@
                     <p id="roleDisplay" style="font-weight: bold; color: #555;"></p>
                 </ul>
             </nav>
-            <div class="search-container">
+            <div class="search-container" style = "position: relative;">
                 <div class="search-bar">
-                    <input type="text" placeholder="Search in site">
-                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Tìm kiếm sản phẩm" id = "searchInput">
+                    <i class="fas fa-search" id ="searchIcon"></i>
                 </div>
+                <ul id="suggestions" style ="position:absolute; background:white; border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.1); margin-top:5px; z-index: 9999; display:none; max-height:200px; overflow-y:auto; width:220px;"></ul>
             </div>
         </div>
     </header>
@@ -1316,5 +1333,86 @@
                 product.classList.remove('hidden');
             });
         });
+        document.addEventListener("DOMContentLoaded", () => {
+        const searchInput = document.getElementById('searchInput');
+        const searchIcon = document.getElementById('searchIcon');
+        const suggestions = document.getElementById('suggestions')
+        function getSuggestions(keyword) {
+            const products = document.querySelectorAll('.product');
+            const results = [];
+            products.forEach(product => {
+                const name = product.querySelector('.product-name').textContent;
+                if (name.toLowerCase().includes(keyword.toLowerCase())) {
+                    results.push(name);
+                }
+            });
+            return [...new Set(results)];
+        }
+        function showSuggestions(list) {
+            suggestions.innerHTML = "";
+            if (list.length === 0) {
+                suggestions.style.display = "none";
+                return;
+            }
+            list.forEach(item => {
+                const li = document.createElement("li");
+                li.textContent = item;
+                li.style.padding = "8px 15px";
+                li.style.cursor = "pointer";
+                li.style.borderBottom = "1px solid #eee";
+                li.addEventListener("click", function () {
+                    searchInput.value = item;
+                    suggestions.style.display = "none";
+                    filterProducts();
+                    const products = document.querySelectorAll('.product');
+                    for (const product of products) {
+                        const name = product.querySelector('.product-name').textContent;
+                        if (name.toLowerCase().includes(item.toLowerCase())) {
+                            product.scrollIntoView({ behavior: "smooth", block: "center" });
+                            break;
+                        }
+                    }
+                });
+                suggestions.appendChild(li);
+             });
+             suggestions.style.display = "block";
+        }
+        function filterProducts() {
+            const keyword = searchInput.value.toLowerCase().trim();
+            const products = document.querySelectorAll('.product');
+            products.forEach(product => {
+                const name = product.querySelector('.product-name').textContent.toLowerCase();
+                const category = product.querySelector('.product-category').textContent.toLowerCase();
+                const match = name.includes(keyword) || category.includes(keyword);
+                product.classList.toggle('hidden', !match);
+                });
+        }
+        searchInput.addEventListener("input", () => {
+            const keyword = searchInput.value.trim();
+            if (keyword.length === 0) {
+                suggestions.style.display = "none";
+                return;
+            }
+            const result = getSuggestions(keyword)
+            showSuggestions(result);
+            });
+        searchInput.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                suggestions.style.display = "none";
+                filterProducts();
+            }
+        });
+        searchIcon.addEventListener("click", () => {
+            suggestions.style.display = "none";
+            filterProducts();
+         });
+        document.addEventListener("click", function (e) {
+            if (!e.target.closest('.search-bar') && !e.target.closest('#suggestions')) {
+                suggestions.style.display = "none";
+            }
+        });
+    });
+
+
     </script>
 </body>
