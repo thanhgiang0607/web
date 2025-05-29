@@ -722,13 +722,14 @@
                     <li><a href="index.html">Trang chủ</a></li>
                     <li><a href="sanpham.html">Sản phẩm</a></li>
                     <li><a href="giohang.html">Giỏ hàng</a></li>
-                    <li><a href="#">Liên hệ</a></li>
+                    <li><a href="login.html">Đăng nhập</a></li>
                 </ul>
             </nav>
             <div class="search-cart">
-                <div class="search-box">
-                    <i class="fas fa-search"></i>
+                <div class="search-box" style = "position:relative;">
+                    <i class="fas fa-search" id = "searchIcon" style ="cursor: pointer;"></i>
                     <input type="text" placeholder="Tìm kiếm sản phẩm..." id="searchInput">
+                    <ul id="suggestions" style="position: absolute; top: 100%; left: 0; width: 100%; background: white; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); z-index: 999; display: none; max-height: 200px; overflow-y: auto; padding: 0; margin: 4px 0 0 0; list-style: none;"></ul>
                 </div>
                 <div class="cart-icon">
                     <i class="fas fa-shopping-cart"></i>
@@ -956,4 +957,111 @@
       }
     });
   }
+  const searchInput = document.getElementById('searchInput');
+  const searchIcon = document.getElementById('searchIcon');
+  const suggestions = document.getElementById('suggestions');
+
+  function getSuggestions(keyword) {
+    const products = document.querySelectorAll('.product-card');
+    const results = [];
+
+    products.forEach(product => {
+      const name = product.querySelector('.product-name').textContent;
+      if (name.toLowerCase().includes(keyword.toLowerCase())) {
+        results.push(name);
+      }
+    });
+
+    return [...new Set(results)];
+  }
+
+  function showSuggestions(list) {
+    suggestions.innerHTML = '';
+    if (list.length === 0) {
+      suggestions.style.display = 'none';
+      return;
+    }
+
+    list.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = item;
+      li.style.padding = '8px 15px';
+      li.style.cursor = 'pointer';
+      li.style.borderBottom = '1px solid #eee';
+      li.addEventListener('click', () => {
+        searchInput.value = item;
+        suggestions.style.display = 'none';
+        filterProducts();
+        scrollToProduct(item);
+      });
+      suggestions.appendChild(li);
+    });
+
+    suggestions.style.display = 'block';
+  }
+
+  function filterProducts() {
+    const keyword = searchInput.value.toLowerCase().trim();
+    const products = document.querySelectorAll('.product-card');
+
+    products.forEach(product => {
+      const name = product.querySelector('.product-name').textContent.toLowerCase();
+      const category = product.querySelector('.product-category').textContent.toLowerCase();
+      const match = name.includes(keyword) || category.includes(keyword);
+      product.style.display = match ? 'block' : 'none';
+    });
+  }
+
+  function scrollToProduct(keyword) {
+    const products = document.querySelectorAll('.product-card');
+    for (const product of products) {
+      const name = product.querySelector('.product-name').textContent.toLowerCase();
+      if (name.includes(keyword.toLowerCase())) {
+        product.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        break;
+      }
+    }
+  }
+
+  searchInput.addEventListener('input', () => {
+    const keyword = searchInput.value.trim();
+    if (keyword.length === 0) {
+      suggestions.style.display = 'none';
+      return;
+    }
+
+    const result = getSuggestions(keyword);
+    showSuggestions(result);
+  });
+
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      suggestions.style.display = 'none';
+      filterProducts();
+      scrollToProduct(searchInput.value);
+    }
+  });
+
+  searchIcon.addEventListener('click', () => {
+    suggestions.style.display = 'none';
+    filterProducts();
+    scrollToProduct(searchInput.value);
+  });
+
+  // Click ra ngoài thì ẩn gợi ý
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.search-box')) {
+      suggestions.style.display = 'none';
+    }
+  });
+</script>
+
+
+
+
+
+
+
+
+
 </script>
